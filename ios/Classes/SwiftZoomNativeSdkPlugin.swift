@@ -13,8 +13,6 @@ public class SwiftZoomNativeSdkPlugin: NSObject, FlutterPlugin {
         print("initZoom .......")
 
         if call.method == "initZoom" {
-            //let sdkKey = "nCwNhSvGIJ9PPhastf2HCqUaqyPJknbxWM6h"
-            //let sdkSecret = "ik4BqddCAgN2viaRtF3HgU27pqaXHodMSzCq"
             guard let args = call.arguments as? Dictionary<String, String> else { return }
             let sdkKey = args["appKey"] ?? ""
             let sdkSecret = args["appSecret"] ?? ""

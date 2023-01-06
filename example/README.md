@@ -1,16 +1,18 @@
-# zoom_native_sdk_example
+# zoom_native_sdk example
+this version is initial join zoom meeting using native sdk for android and ios
+[plug-in package](https://github.com/abo-el30la/zoom_native_sdk)
+using
+import 'package:zoom_native_sdk/zoom_native_sdk.dart';
 
-Demonstrates how to use the zoom_native_sdk plugin.
+final _zoomNativelyPlugin = ZoomNativeSdk();
 
-## Getting Started
+isInitialized = (await _zoomNativelyPlugin.initZoom(
+appKey: "",
+appSecret: "",
+)) ??
+false;
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+await _zoomNativelyPlugin.joinMeting(
+meetingNumber: "",
+meetingPassword: "",
+);

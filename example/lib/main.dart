@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:zoom_native_sdk/zoom_native_sdk.dart';
 
@@ -16,7 +16,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _zoomNativeSdkPlugin = ZoomNativeSdk();
+  final _zoomNativelyPlugin = ZoomNativeSdk();
+  bool isInitialized = false;
 
   @override
   void initState() {
@@ -26,21 +27,25 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    String platformVersion;
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
+
     try {
-      // platformVersion =
-      //     await _zoomNativeSdkPlugin.getPlatformVersion() ?? 'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
+      if (!isInitialized) {
+        isInitialized = (await _zoomNativelyPlugin.initZoom(
+              appKey: "Z07vF5qrOaskO7Bc42OpgSn4ml1AalMPXQhT",
+              appSecret: "BHOJoOcIWc96CV5bZ5heLVDszOCrl7vhA3jp",
+            )) ??
+            false;
+      }
+    } on PlatformException catch (e) {
+      debugPrint(e.message);
     }
 
     // If the widget was removed from the tree while the asynchronous platform
     // message was in flight, we want to discard the reply rather than calling
     // setState to update our non-existent appearance.
     if (!mounted) return;
-
   }
 
   @override
@@ -50,8 +55,19 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: const Center(
-          child: Text('Running on: \n'),
+        body: Center(
+          child: ElevatedButton(
+            onPressed: () async {
+              debugPrint("joinMeting -> isInitialized = $isInitialized");
+              if (isInitialized) {
+                await _zoomNativelyPlugin.joinMeting(
+                  meetingNumber: "82001321528",
+                  meetingPassword: "MFViZk5sYzJoNGhjSThuV3lUM3NXQT09",
+                );
+              }
+            },
+            child: const Text("join"),
+          ),
         ),
       ),
     );

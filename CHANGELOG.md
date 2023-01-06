@@ -1,3 +1,2 @@
 ## 0.0.1
-
-* TODO: Describe initial release.
+this version is initial join zoom meeting using native sdk for android and ios

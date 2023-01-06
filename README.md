@@ -1,15 +1,6 @@
 # zoom_native_sdk
 
-A new Flutter project.
-
 ## Getting Started
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
-
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
+this version is initial join zoom meeting using native sdk for android and ios
+[plug-in package](https://github.com/abo-el30la/zoom_native_sdk)

@@ -1,7 +1,7 @@
 name: zoom_native_sdk
 description: A new Flutter project.
 version: 0.0.1
-homepage:
+homepage: https://github.com/abo-el30la/zoom_native_sdk
 
 environment:
   sdk: '>=2.18.6 <3.0.0'

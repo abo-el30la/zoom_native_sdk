@@ -15,23 +15,6 @@ import us.zoom.sdk.*
 class ZoomNativeSdkPlugin FlutterPlugin, MethodCallHandler, MeetingServiceListener,
 ZoomSDKInitializeListener, ActivityAware {
 
-    /// The MethodChannel that will the communication between Flutter and native Android
-    // *** domain: "zoom.us",
-    // *** appKey: "Z07vF5qrOaskO7Bc42OpgSn4ml1AalMPXQhT", //API KEY FROM ZOOM
-    // *** appSecret: "BHOJoOcIWc96CV5bZ5heLVDszOCrl7vhA3jp", //API SECRET FROM ZOOM
-    //"consultingOrders":[{"reservationNumber":"20","doctorId":3,"doctorExaminationPeriod":20,"doctorName":"مصطفي سعد",
-    // "doctorFullFilePath":"Files/Doctors/300x300_2597fa34-d0f3-4095-939e-84f747da39e9.jpg","doctorDoctorTitle":4,
-    // "doctorOtherTitle":null,"doctorTotalRates":3.5,"consultingDate":"2022-12-16T00:00:00Z","consultingTime":"15:40:00",
-    // "meetingId":82001321528,"meetingUserName":82001321528,"meetingPassword":"MFViZk5sYzJoNGhjSThuV3lUM3NXQT09",
-    // "hostMeetingUrl":"https://us06web.zoom.us/s/82001321528?zak=eyJ0eXAiOiJKV1QiLCJzdiI6IjAwMDAwMSIsInptX3NrbSI6InptX28ybSIsImFsZyI6IkhTMjU2In0.eyJhdWQiOiJjbGllbnRzbSIsInVpZCI6InJfNVlyRWoyUmVldEpQbEhOYVB4blEiLCJpc3MiOiJ3ZWIiLCJzayI6IjAiLCJzdHkiOjEsIndjZCI6InVzMDYiLCJjbHQiOjAsIm1udW0iOiI4MjAwMTMyMTUyOCIsImV4cCI6MTY3MTEyNTQwNiwiaWF0IjoxNjcxMTE4MjA2LCJhaWQiOiJFcDM3ZHRHNFRkS0FmMjM4clFad09RIiwiY2lkIjoiIn0.x954Rh7kTMDzRcwClXoLH_DpCjXVYcGG4SGWrbjc6x8"
-    // ,"clientMeetingUrl":"https://us06web.zoom.us/j/82001321528","mobileMeetingUrl":"55555555","examinationPrice":50.0
-    /// when the Flutter Engine is detached from the Activity
-
-//    private val appSecret = "ik4BqddCAgN2viaRtF3HgU27pqaXHodMSzCq"
-//    private val appKey = "nCwNhSvGIJ9PPhastf2HCqUaqyPJknbxWM6h"
-
-    // private val meetingId = "82001321528"
-    //private val meetingPassword = "MFViZk5sYzJoNGhjSThuV3lUM3NXQT09"
 //    private val statusListener: MeetingServiceListener? = null
 
     private lateinit var channel: MethodChannel

@@ -33,8 +33,8 @@ class _MyAppState extends State<MyApp> {
     try {
       if (!isInitialized) {
         isInitialized = (await _zoomNativelyPlugin.initZoom(
-              appKey: "Z07vF5qrOaskO7Bc42OpgSn4ml1AalMPXQhT",
-              appSecret: "BHOJoOcIWc96CV5bZ5heLVDszOCrl7vhA3jp",
+              appKey: "",
+              appSecret: "",
             )) ??
             false;
       }
@@ -61,8 +61,8 @@ class _MyAppState extends State<MyApp> {
               debugPrint("joinMeting -> isInitialized = $isInitialized");
               if (isInitialized) {
                 await _zoomNativelyPlugin.joinMeting(
-                  meetingNumber: "82001321528",
-                  meetingPassword: "MFViZk5sYzJoNGhjSThuV3lUM3NXQT09",
+                  meetingNumber: "",
+                  meetingPassword: "",
                 );
               }
             },

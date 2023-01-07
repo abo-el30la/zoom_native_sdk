@@ -25,7 +25,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -40,7 +40,22 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
-    defaultConfig {
-        minSdkVersion 16
+    lintOptions {
+        disable 'InvalidPackage'
     }
+    
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 33
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+        consumerProguardFiles 'proguard.txt'
+    }
+
+}
+
+dependencies {
+    implementation project(path: ':commonlib')
+    implementation project(path: ':mobilertc')
 }

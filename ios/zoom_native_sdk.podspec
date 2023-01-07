@@ -5,7 +5,7 @@
 Pod::Spec.new do |s|
   s.name             = 'zoom_native_sdk'
   s.version          = '0.0.1'
-  s.summary          = 'A new Flutter project.'
+  s.summary          = 'Another plugin to join zoom metting'
   s.description      = <<-DESC
 A new Flutter project.
                        DESC

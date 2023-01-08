@@ -2,6 +2,8 @@ import 'dart:core';
 import 'dart:io';
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 void main(List<String> args) async {
   var location = Platform.script.toString();
   var isNewFlutter = location.contains(".snapshot");
@@ -22,7 +24,9 @@ void main(List<String> args) async {
       }
     }
     if (zoomFileUri == null) {
-      print("zoom_native_sdk package not found!");
+      if (kDebugMode) {
+        print("zoom_native_sdk package not found!");
+      }
       return;
     }
     location = zoomFileUri;
@@ -38,40 +42,45 @@ void main(List<String> args) async {
 
   await checkAndDownloadSDK(location);
 
-  print('Complete');
+  if (kDebugMode) {
+    print('Complete');
+  }
 }
 
 Future<void> checkAndDownloadSDK(String location) async {
   var iosSDKFile = '$location/ios/MobileRTC.xcframework/ios-arm64_armv7/MobileRTC.framework/MobileRTC';
-  bool exists = await File(iosSDKFile).exists();
+  // = await File(iosSDKFile).exists();
 
   // if (!exists) {
   await downloadFile(Uri.parse('https://www.dropbox.com/s/qftq0d9un83g0l2/MobileRTC?dl=1'), iosSDKFile);
   // }
 
   var iosSimulateSDKFile = '$location/ios/MobileRTC.xcframework/ios-x86_64-simulator/MobileRTC.framework/MobileRTC';
-  exists = await File(iosSimulateSDKFile).exists();
+  //exists = await File(iosSimulateSDKFile).exists();
 
   // if (!exists) {
   await downloadFile(Uri.parse('https://www.dropbox.com/s/zyv0fcb29nflnli/MobileRTC?dl=1'), iosSimulateSDKFile);
   // }
 
   var androidCommonLibFile = '$location/android/libs/commonlib.aar';
-  exists = await File(androidCommonLibFile).exists();
+  //exists = await File(androidCommonLibFile).exists();
   //if (!exists) {
   await downloadFile(Uri.parse('https://www.dropbox.com/s/u3sh55wiwf06h9t/commonlib.aar?dl=1'), androidCommonLibFile);
   //}
   var androidRTCLibFile = '$location/android/libs/mobilertc.aar';
-  exists = await File(androidRTCLibFile).exists();
+  //exists = await File(androidRTCLibFile).exists();
   //if (!exists) {
   await downloadFile(Uri.parse('https://www.dropbox.com/s/ofsh4untdm22exw/mobilertc.aar?dl=1'), androidRTCLibFile);
   //}
 }
 
 Future<void> downloadFile(Uri uri, String savePath) async {
-  print('Download ${uri.toString()} to $savePath');
   File destinationFile = await File(savePath).create(recursive: true);
-  print(destinationFile.path);
+
+  if (kDebugMode) {
+    print('Download ${uri.toString()} to $savePath');
+    print(destinationFile.path);
+  }
   final request = await HttpClient().getUrl(uri);
   final response = await request.close();
   await response.pipe(destinationFile.openWrite());

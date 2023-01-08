@@ -3,27 +3,15 @@ import 'dart:core';
 import 'dart:io';
 
 void main(List<String> args) async {
-  //final commonlibLinkAndroidGradle = "https://www.dropbox.com/s/h8gq6ewfkn7zsh1/build.gradle?dl=0";
-  //const commonlibLinkAndroidAar = "https://www.dropbox.com/s/u3sh55wiwf06h9t/commonlib.aar?dl=0";
-
-  //final mobilertcLinkAndroidGradle = "https://www.dropbox.com/s/ui7p1eawaog6ylc/build.gradle?dl=0";
-  //const mobilertcLinkAndroidAar = "https://www.dropbox.com/s/ofsh4untdm22exw/mobilertc.aar?dl=0";
-
   var location = Platform.script.toString();
-  //location = location.replaceFirst("file:///", "");
-  //location = location.replaceFirst("bin/download.dart", "");
-  //print(location);
-  //await downloadFile(Uri.parse(commonlibLinkAndroidAar), "${location}android/libs/commonlib.aar");
-
-  //await downloadFile(Uri.parse(mobilertcLinkAndroidAar), "${location}android/libs/mobilertc.aar");
-
   var isNewFlutter = location.contains(".snapshot");
   if (isNewFlutter) {
     var sp = Platform.script.toFilePath();
     var sd = sp.split(Platform.pathSeparator);
     sd.removeLast();
     var scriptDir = sd.join(Platform.pathSeparator);
-    var packageConfigPath = [scriptDir, '..', '..', '..', 'package_config.json'].join(Platform.pathSeparator);
+    var packageConfigPath = [scriptDir, '..', '..', '..', 'package_config.json']
+        .join(Platform.pathSeparator);
     var jsonString = File(packageConfigPath).readAsStringSync();
     Map<String, dynamic> packages = jsonDecode(jsonString);
     var packageList = packages["packages"];
@@ -48,7 +36,7 @@ void main(List<String> args) async {
   if (!isNewFlutter) {
     location = location.replaceFirst("/bin/download.dart", "");
   }
-  print(location);
+
   await checkAndDownloadSDK(location);
 
   print('Complete');
@@ -75,16 +63,16 @@ Future<void> checkAndDownloadSDK(String location) async {
   //   await downloadFile(Uri.parse('https://www.dropbox.com/s/alk03qxiolurxf8/MobileRTC?dl=1'), iosSimulateSDKFile);
   // }
 
-  var androidCommonLibFile = 'android/libs/commonlib.aar';
+  var androidCommonLibFile = './android/libs/commonlib.aar';
   exists = await File(androidCommonLibFile).exists();
- // if (!exists) {
-    await downloadFile(Uri.parse(commonlibLinkAndroidAar), "./$androidCommonLibFile");
- // }
-  var androidRTCLibFile = 'android/libs/mobilertc.aar';
+  // if (!exists) {
+  await downloadFile(Uri.parse(commonlibLinkAndroidAar), androidCommonLibFile);
+  // }
+  var androidRTCLibFile = './android/libs/mobilertc.aar';
   exists = await File(androidRTCLibFile).exists();
- // if (!exists) {
-    await downloadFile(Uri.parse(mobilertcLinkAndroidAar), "./$androidRTCLibFile");
- // }
+  // if (!exists) {
+  await downloadFile(Uri.parse(mobilertcLinkAndroidAar), androidRTCLibFile);
+  // }
 }
 
 Future<void> downloadFile(Uri uri, String savePath) async {
@@ -92,6 +80,7 @@ Future<void> downloadFile(Uri uri, String savePath) async {
   File destinationFile = await File(savePath).create(recursive: true);
 
   final request = await HttpClient().getUrl(uri);
+  print(request.connectionInfo?.remoteAddress.toString());
   final response = await request.close();
   await response.pipe(destinationFile.openWrite());
 }

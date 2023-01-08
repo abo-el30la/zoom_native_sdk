@@ -3,7 +3,7 @@ import UIKit
 import MobileRTC
 public class SwiftZoomNativeSdkPlugin: NSObject, FlutterPlugin {
     public static func register(with registrar: FlutterPluginRegistrar) {
-        let channel = FlutterMethodChannel(name: "zoom_natively", binaryMessenger: registrar.messenger())
+        let channel = FlutterMethodChannel(name: "zoom_native_sdk", binaryMessenger: registrar.messenger())
         let instance = SwiftZoomNativeSdkPlugin()
         registrar.addMethodCallDelegate(instance, channel: channel)
 

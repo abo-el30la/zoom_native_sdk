@@ -2,8 +2,6 @@ import 'dart:core';
 import 'dart:io';
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-
 void main(List<String> args) async {
   var location = Platform.script.toString();
   var isNewFlutter = location.contains(".snapshot");
@@ -24,9 +22,8 @@ void main(List<String> args) async {
       }
     }
     if (zoomFileUri == null) {
-      if (kDebugMode) {
-        print("zoom_native_sdk package not found!");
-      }
+      //print("zoom_native_sdk package not found!");
+    
       return;
     }
     location = zoomFileUri;
@@ -42,9 +39,9 @@ void main(List<String> args) async {
 
   await checkAndDownloadSDK(location);
 
-  if (kDebugMode) {
-    print('Complete');
-  }
+  //if (kDebugMode) {
+    //print('Complete');
+  //}
 }
 
 Future<void> checkAndDownloadSDK(String location) async {
@@ -77,10 +74,10 @@ Future<void> checkAndDownloadSDK(String location) async {
 Future<void> downloadFile(Uri uri, String savePath) async {
   File destinationFile = await File(savePath).create(recursive: true);
 
-  if (kDebugMode) {
-    print('Download ${uri.toString()} to $savePath');
-    print(destinationFile.path);
-  }
+  // if (kDebugMode) {
+  //  print('Download ${uri.toString()} to $savePath');
+  //  print(destinationFile.path);
+  // }
   final request = await HttpClient().getUrl(uri);
   final response = await request.close();
   await response.pipe(destinationFile.openWrite());

@@ -7,13 +7,12 @@ import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
-import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import us.zoom.sdk.*
 
 /** ZoomNativeSdkPlugin */
-class ZoomNativeSdkPlugin FlutterPlugin, MethodCallHandler, MeetingServiceListener,
-ZoomSDKInitializeListener, ActivityAware {
+class ZoomNativeSdkPlugin : FlutterPlugin, MethodChannel.MethodCallHandler, MeetingServiceListener,
+    ZoomSDKInitializeListener, ActivityAware {
 
 //    private val statusListener: MeetingServiceListener? = null
 
@@ -25,7 +24,7 @@ ZoomSDKInitializeListener, ActivityAware {
 
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "zoom_natively")
+        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "zoom_native_sdk")
         channel.setMethodCallHandler(this)
     }
 

@@ -59,12 +59,12 @@ Future<void> checkAndDownloadSDK(String location) async {
   var androidCommonLibFile = '$location/android/libs/commonlib.aar';
   exists = await File(androidCommonLibFile).exists();
   //if (!exists) {
-    await downloadFile(Uri.parse('https://www.dropbox.com/s/u3sh55wiwf06h9t/commonlib.aar?dl=1'), androidCommonLibFile);
+  await downloadFile(Uri.parse('https://www.dropbox.com/s/u3sh55wiwf06h9t/commonlib.aar?dl=1'), androidCommonLibFile);
   //}
   var androidRTCLibFile = '$location/android/libs/mobilertc.aar';
   exists = await File(androidRTCLibFile).exists();
   //if (!exists) {
-    await downloadFile(Uri.parse('https://www.dropbox.com/s/ofsh4untdm22exw/mobilertc.aar?dl=1'), androidRTCLibFile);
+  await downloadFile(Uri.parse('https://www.dropbox.com/s/ofsh4untdm22exw/mobilertc.aar?dl=1'), androidRTCLibFile);
   //}
 }
 
@@ -75,6 +75,4 @@ Future<void> downloadFile(Uri uri, String savePath) async {
   final request = await HttpClient().getUrl(uri);
   final response = await request.close();
   await response.pipe(destinationFile.openWrite());
-
-
 }

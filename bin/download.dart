@@ -4,10 +4,18 @@ import 'dart:convert';
 
 void main(List<String> args) async {
 
-await downloadFile(
-        Uri.parse(
-            'https://www.dropbox.com/s/ahh06pva216szc1/mobilertc.aar?dl=1'),
-        "");
+  //final commonlibLinkAndroidGradle = "https://www.dropbox.com/s/h8gq6ewfkn7zsh1/build.gradle?dl=0";
+  final commonlibLinkAndroidAar = "https://www.dropbox.com/s/u3sh55wiwf06h9t/commonlib.aar?dl=0";
+
+  //final mobilertcLinkAndroidGradle = "https://www.dropbox.com/s/ui7p1eawaog6ylc/build.gradle?dl=0";
+  final mobilertcLinkAndroidAar = "https://www.dropbox.com/s/ofsh4untdm22exw/mobilertc.aar?dl=0";
+
+  var location = Platform.script.toString();
+  location = location.replaceFirst("file:///", "");
+  location = location.replaceFirst("bin/download.dart", "");
+  await downloadFile(Uri.parse(commonlibLinkAndroidAar), location + "android/libs/commonlib.aar");
+
+  await downloadFile(Uri.parse(mobilertcLinkAndroidAar), location + "android/libs/mobilertc.aar");
 
   // var location = Platform.script.toString();
   // var isNewFlutter = location.contains(".snapshot");
@@ -49,51 +57,35 @@ await downloadFile(
 }
 
 Future<void> checkAndDownloadSDK(String location) async {
-
-
-
-  var iosSDKFile = location +
-      '/ios/MobileRTC.xcframework/ios-arm64_armv7/MobileRTC.framework/MobileRTC';
+  var iosSDKFile = location + '/ios/MobileRTC.xcframework/ios-arm64_armv7/MobileRTC.framework/MobileRTC';
   bool exists = await File(iosSDKFile).exists();
 
   if (!exists) {
-    await downloadFile(
-        Uri.parse('https://www.dropbox.com/s/a5vfh2m543t15k8/MobileRTC?dl=1'),
-        iosSDKFile);
+    await downloadFile(Uri.parse('https://www.dropbox.com/s/a5vfh2m543t15k8/MobileRTC?dl=1'), iosSDKFile);
   }
 
-  var iosSimulateSDKFile = location +
-      '/ios/MobileRTC.xcframework/ios-i386_x86_64-simulator/MobileRTC.framework/MobileRTC';
+  var iosSimulateSDKFile = location + '/ios/MobileRTC.xcframework/ios-i386_x86_64-simulator/MobileRTC.framework/MobileRTC';
   exists = await File(iosSimulateSDKFile).exists();
 
   if (!exists) {
-    await downloadFile(
-        Uri.parse('https://www.dropbox.com/s/alk03qxiolurxf8/MobileRTC?dl=1'),
-        iosSimulateSDKFile);
+    await downloadFile(Uri.parse('https://www.dropbox.com/s/alk03qxiolurxf8/MobileRTC?dl=1'), iosSimulateSDKFile);
   }
 
   var androidCommonLibFile = location + '/android/libs/commonlib.aar';
   exists = await File(androidCommonLibFile).exists();
   if (!exists) {
-    await downloadFile(
-        Uri.parse(
-            'https://www.dropbox.com/s/i5fww50elzrphra/commonlib.aar?dl=1'),
-        "./commonlib/");
+    await downloadFile(Uri.parse('https://www.dropbox.com/s/i5fww50elzrphra/commonlib.aar?dl=1'), "./commonlib/");
   }
   var androidRTCLibFile = location + '/android/libs/mobilertc.aar';
   exists = await File(androidRTCLibFile).exists();
   if (!exists) {
-    await downloadFile(
-        Uri.parse(
-            'https://www.dropbox.com/s/ahh06pva216szc1/mobilertc.aar?dl=1'),
-        "./mobilertc/");
+    await downloadFile(Uri.parse('https://www.dropbox.com/s/ahh06pva216szc1/mobilertc.aar?dl=1'), "./mobilertc/");
   }
 }
 
 Future<void> downloadFile(Uri uri, String savePath) async {
-
   print('Download ${uri.toString()} to $savePath');
-  File destinationFile = await File("/home/ma/plugs/download_script/mobilertc.aar").create(recursive: true);
+  File destinationFile = await File(savePath).create(recursive: true);
 
   final request = await HttpClient().getUrl(uri);
   final response = await request.close();

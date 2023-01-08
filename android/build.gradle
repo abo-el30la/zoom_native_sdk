@@ -27,7 +27,7 @@ rootProject.allprojects {
         jcenter()
 
         flatDir {
-            dirs project(':flutter_zoom_sdk').file('libs')
+            dirs project(':zoom_native_sdk').file('libs')
         }
     }
 }
@@ -68,9 +68,7 @@ android {
 
 dependencies {
 
-
     implementation('com.google.android.flexbox:flexbox:3.0.0')
-
     implementation("androidx.security:security-crypto:1.1.0-alpha04")
     implementation("com.google.crypto.tink:tink-android:1.7.0")
     implementation("com.google.android.exoplayer:exoplayer-core:2.18.2")

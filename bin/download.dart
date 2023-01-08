@@ -1,86 +1,90 @@
+import 'dart:convert';
 import 'dart:core';
 import 'dart:io';
-import 'dart:convert';
 
 void main(List<String> args) async {
-
   //final commonlibLinkAndroidGradle = "https://www.dropbox.com/s/h8gq6ewfkn7zsh1/build.gradle?dl=0";
-  final commonlibLinkAndroidAar = "https://www.dropbox.com/s/u3sh55wiwf06h9t/commonlib.aar?dl=0";
+  //const commonlibLinkAndroidAar = "https://www.dropbox.com/s/u3sh55wiwf06h9t/commonlib.aar?dl=0";
 
   //final mobilertcLinkAndroidGradle = "https://www.dropbox.com/s/ui7p1eawaog6ylc/build.gradle?dl=0";
-  final mobilertcLinkAndroidAar = "https://www.dropbox.com/s/ofsh4untdm22exw/mobilertc.aar?dl=0";
+  //const mobilertcLinkAndroidAar = "https://www.dropbox.com/s/ofsh4untdm22exw/mobilertc.aar?dl=0";
 
   var location = Platform.script.toString();
-  location = location.replaceFirst("file:///", "");
-  location = location.replaceFirst("bin/download.dart", "");
-  await downloadFile(Uri.parse(commonlibLinkAndroidAar), location + "android/libs/commonlib.aar");
+  //location = location.replaceFirst("file:///", "");
+  //location = location.replaceFirst("bin/download.dart", "");
+  //print(location);
+  //await downloadFile(Uri.parse(commonlibLinkAndroidAar), "${location}android/libs/commonlib.aar");
 
-  await downloadFile(Uri.parse(mobilertcLinkAndroidAar), location + "android/libs/mobilertc.aar");
+  //await downloadFile(Uri.parse(mobilertcLinkAndroidAar), "${location}android/libs/mobilertc.aar");
 
-  // var location = Platform.script.toString();
-  // var isNewFlutter = location.contains(".snapshot");
-  // if (isNewFlutter) {
-  //   var sp = Platform.script.toFilePath();
-  //   var sd = sp.split(Platform.pathSeparator);
-  //   sd.removeLast();
-  //   var scriptDir = sd.join(Platform.pathSeparator);
-  //   var packageConfigPath = [scriptDir, '..', '..', '..', 'package_config.json']
-  //       .join(Platform.pathSeparator);
-  //   var jsonString = File(packageConfigPath).readAsStringSync();
-  //   Map<String, dynamic> packages = jsonDecode(jsonString);
-  //   var packageList = packages["packages"];
-  //   String? zoomFileUri;
-  //   for (var package in packageList) {
-  //     if (package["name"] == "flutter_zoom_sdk") {
-  //       zoomFileUri = package["rootUri"];
-  //       break;
-  //     }
-  //   }
-  //   if (zoomFileUri == null) {
-  //     print("flutter_zoom_sdk package not found!");
-  //     return;
-  //   }
-  //   location = zoomFileUri;
-  // }
-  // if (Platform.isWindows) {
-  //   location = location.replaceFirst("file:///", "");
-  // } else {
-  //   location = location.replaceFirst("file://", "");
-  // }
-  // if (!isNewFlutter) {
-  //   location = location.replaceFirst("/bin/unzip_zoom_sdk.dart", "");
-  // }
+  var isNewFlutter = location.contains(".snapshot");
+  if (isNewFlutter) {
+    var sp = Platform.script.toFilePath();
+    var sd = sp.split(Platform.pathSeparator);
+    sd.removeLast();
+    var scriptDir = sd.join(Platform.pathSeparator);
+    var packageConfigPath = [scriptDir, '..', '..', '..', 'package_config.json'].join(Platform.pathSeparator);
+    var jsonString = File(packageConfigPath).readAsStringSync();
+    Map<String, dynamic> packages = jsonDecode(jsonString);
+    var packageList = packages["packages"];
+    String? zoomFileUri;
+    for (var package in packageList) {
+      if (package["name"] == "zoom_native_sdk") {
+        zoomFileUri = package["rootUri"];
+        break;
+      }
+    }
+    if (zoomFileUri == null) {
+      print("zoom_native_sdk package not found!");
+      return;
+    }
+    location = zoomFileUri;
+  }
+  if (Platform.isWindows) {
+    location = location.replaceFirst("file:///", "");
+  } else {
+    location = location.replaceFirst("file://", "");
+  }
+  if (!isNewFlutter) {
+    location = location.replaceFirst("/bin/download.dart", "");
+  }
+  print(location);
+  await checkAndDownloadSDK(location);
 
-  // await checkAndDownloadSDK(location);
-
-  // print('Complete');
+  print('Complete');
 }
 
 Future<void> checkAndDownloadSDK(String location) async {
-  var iosSDKFile = location + '/ios/MobileRTC.xcframework/ios-arm64_armv7/MobileRTC.framework/MobileRTC';
+  //final commonlibLinkAndroidGradle = "https://www.dropbox.com/s/h8gq6ewfkn7zsh1/build.gradle?dl=0";
+  const commonlibLinkAndroidAar = "https://www.dropbox.com/s/u3sh55wiwf06h9t/commonlib.aar?dl=0";
+
+  //final mobilertcLinkAndroidGradle = "https://www.dropbox.com/s/ui7p1eawaog6ylc/build.gradle?dl=0";
+  const mobilertcLinkAndroidAar = "https://www.dropbox.com/s/ofsh4untdm22exw/mobilertc.aar?dl=0";
+
+  var iosSDKFile = '$location/ios/MobileRTC.xcframework/ios-arm64_armv7/MobileRTC.framework/MobileRTC';
   bool exists = await File(iosSDKFile).exists();
 
-  if (!exists) {
-    await downloadFile(Uri.parse('https://www.dropbox.com/s/a5vfh2m543t15k8/MobileRTC?dl=1'), iosSDKFile);
-  }
+  // if (!exists) {
+  //   await downloadFile(Uri.parse('https://www.dropbox.com/s/a5vfh2m543t15k8/MobileRTC?dl=1'), iosSDKFile);
+  // }
 
-  var iosSimulateSDKFile = location + '/ios/MobileRTC.xcframework/ios-i386_x86_64-simulator/MobileRTC.framework/MobileRTC';
-  exists = await File(iosSimulateSDKFile).exists();
+  // var iosSimulateSDKFile = location + '/ios/MobileRTC.xcframework/ios-i386_x86_64-simulator/MobileRTC.framework/MobileRTC';
+  // exists = await File(iosSimulateSDKFile).exists();
 
-  if (!exists) {
-    await downloadFile(Uri.parse('https://www.dropbox.com/s/alk03qxiolurxf8/MobileRTC?dl=1'), iosSimulateSDKFile);
-  }
+  // if (!exists) {
+  //   await downloadFile(Uri.parse('https://www.dropbox.com/s/alk03qxiolurxf8/MobileRTC?dl=1'), iosSimulateSDKFile);
+  // }
 
-  var androidCommonLibFile = location + '/android/libs/commonlib.aar';
+  var androidCommonLibFile = 'android/libs/commonlib.aar';
   exists = await File(androidCommonLibFile).exists();
-  if (!exists) {
-    await downloadFile(Uri.parse('https://www.dropbox.com/s/i5fww50elzrphra/commonlib.aar?dl=1'), "./commonlib/");
-  }
-  var androidRTCLibFile = location + '/android/libs/mobilertc.aar';
+ // if (!exists) {
+    await downloadFile(Uri.parse(commonlibLinkAndroidAar), "./$androidCommonLibFile");
+ // }
+  var androidRTCLibFile = 'android/libs/mobilertc.aar';
   exists = await File(androidRTCLibFile).exists();
-  if (!exists) {
-    await downloadFile(Uri.parse('https://www.dropbox.com/s/ahh06pva216szc1/mobilertc.aar?dl=1'), "./mobilertc/");
-  }
+ // if (!exists) {
+    await downloadFile(Uri.parse(mobilertcLinkAndroidAar), "./$androidRTCLibFile");
+ // }
 }
 
 Future<void> downloadFile(Uri uri, String savePath) async {

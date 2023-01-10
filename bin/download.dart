@@ -75,7 +75,7 @@ Future<void> downloadFile(Uri uri, String savePath) async {
   File destinationFile = await File(savePath).create(recursive: true);
 
   // if (kDebugMode) {
-  //  print('Download ${uri.toString()} to $savePath');
+  print('Download ${uri.toString()}\nto\n$savePath');
   //  print(destinationFile.path);
   // }
   final request = await HttpClient().getUrl(uri);

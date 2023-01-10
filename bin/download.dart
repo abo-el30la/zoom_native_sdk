@@ -23,7 +23,7 @@ void main(List<String> args) async {
     }
     if (zoomFileUri == null) {
       //print("zoom_native_sdk package not found!");
-    
+
       return;
     }
     location = zoomFileUri;
@@ -40,7 +40,7 @@ void main(List<String> args) async {
   await checkAndDownloadSDK(location);
 
   //if (kDebugMode) {
-    //print('Complete');
+  //print('Complete');
   //}
 }
 
@@ -49,14 +49,14 @@ Future<void> checkAndDownloadSDK(String location) async {
   // = await File(iosSDKFile).exists();
 
   // if (!exists) {
-  await downloadFile(Uri.parse('https://www.dropbox.com/s/qftq0d9un83g0l2/MobileRTC?dl=1'), iosSDKFile);
+  await downloadFile(Uri.parse('https://www.dropbox.com/s/rbmhh5o6p75sidj/MobileRTC?dl=1'), iosSDKFile);
   // }
 
   var iosSimulateSDKFile = '${location}ios/MobileRTC.xcframework/ios-x86_64-simulator/MobileRTC.framework/MobileRTC';
   //exists = await File(iosSimulateSDKFile).exists();
 
   // if (!exists) {
-  await downloadFile(Uri.parse('https://www.dropbox.com/s/zyv0fcb29nflnli/MobileRTC?dl=1'), iosSimulateSDKFile);
+  await downloadFile(Uri.parse('https://www.dropbox.com/s/xdwalikx32g3h5p/MobileRTC?dl=1'), iosSimulateSDKFile);
   // }
 
   var androidCommonLibFile = '$location/android/libs/commonlib.aar';

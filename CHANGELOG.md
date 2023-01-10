@@ -1,2 +1,2 @@
-## 0.1.6
+## 0.1.7
 # this version is initial join zoom meeting using native sdk for android and ios

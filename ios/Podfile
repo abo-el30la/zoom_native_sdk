@@ -30,7 +30,7 @@ flutter_ios_podfile_setup
 target 'Runner' do
   use_frameworks!
   use_modular_headers!
-  pod 'MobileRTC' ,:path => "ios/MobileRTC.xcframework/ios-arm64/MobileRTC.framework/MobileRTC"
+  pod 'MobileRTC' ,:path => "ios/MobileRTC.xcframework/"
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 end
 

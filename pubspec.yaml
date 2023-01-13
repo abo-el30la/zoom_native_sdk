@@ -1,6 +1,6 @@
 name: zoom_native_sdk
 description: Another plugin to join zoom meeting using native android and ios zoom sdk you need to darg and drop zoom ios meeting sdk manually to your application
-version: 0.3.1
+version: 0.3.2
 homepage: https://github.com/abo-el30la/zoom_native_sdk
 
 environment:

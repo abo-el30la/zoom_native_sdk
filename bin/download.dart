@@ -10,7 +10,8 @@ void main(List<String> args) async {
     var sd = sp.split(Platform.pathSeparator);
     sd.removeLast();
     var scriptDir = sd.join(Platform.pathSeparator);
-    var packageConfigPath = [scriptDir, '..', '..', '..', 'package_config.json'].join(Platform.pathSeparator);
+    var packageConfigPath = [scriptDir, '..', '..', '..', 'package_config.json']
+        .join(Platform.pathSeparator);
     var jsonString = File(packageConfigPath).readAsStringSync();
     Map<String, dynamic> packages = jsonDecode(jsonString);
     var packageList = packages["packages"];
@@ -62,12 +63,16 @@ Future<void> checkAndDownloadSDK(String location) async {
   var androidCommonLibFile = '$location/android/libs/commonlib.aar';
   //exists = await File(androidCommonLibFile).exists();
   //if (!exists) {
-  await downloadFile(Uri.parse('https://www.dropbox.com/s/u3sh55wiwf06h9t/commonlib.aar?dl=1'), androidCommonLibFile);
+  await downloadFile(
+      Uri.parse('https://www.dropbox.com/s/u3sh55wiwf06h9t/commonlib.aar?dl=1'),
+      androidCommonLibFile);
   //}
   var androidRTCLibFile = '$location/android/libs/mobilertc.aar';
   //exists = await File(androidRTCLibFile).exists();
   //if (!exists) {
-  await downloadFile(Uri.parse('https://www.dropbox.com/s/ofsh4untdm22exw/mobilertc.aar?dl=1'), androidRTCLibFile);
+  await downloadFile(
+      Uri.parse('https://www.dropbox.com/s/ofsh4untdm22exw/mobilertc.aar?dl=1'),
+      androidRTCLibFile);
   //}
 }
 

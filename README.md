@@ -7,7 +7,7 @@ flutter pub run zoom_native_sdk:download
 ```
 # usage
 ios guide to download sdk
-[ios docs]https://marketplace.zoom.us/docs/sdk/native-sdks/iOS/getting-started/install-sdk/
+[ios docs](https://marketplace.zoom.us/docs/sdk/native-sdks/iOS/getting-started/install-sdk/)
 
 ```
 import 'package:zoom_native_sdk/zoom_native_sdk.dart';

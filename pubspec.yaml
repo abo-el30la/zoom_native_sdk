@@ -1,6 +1,6 @@
 name: zoom_native_sdk
 description: Another plugin to join zoom metting
-version: 0.2.7
+version: 0.2.8
 homepage: https://github.com/abo-el30la/zoom_native_sdk
 
 environment:

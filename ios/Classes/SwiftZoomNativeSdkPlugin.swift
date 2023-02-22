@@ -157,8 +157,8 @@ extension SwiftZoomNativeSdkPlugin: MobileRTCMeetingServiceDelegate {
         case .leaveBO:
             print("leaveBO")
 
-        case .waitingExternalSessionKey:
-            print("waitingExternalSessionKey")
+//         case .waitingExternalSessionKey:
+//             print("waitingExternalSessionKey")
         @unknown default:
             break
         }

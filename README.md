@@ -79,7 +79,7 @@ for more info
 </details>
 <br /> 
 
-### usage
+### Usage
 -------------------------
 
 
@@ -105,3 +105,20 @@ await _zoomNativelyPlugin.joinMeting(
   meetingPassword: "",
 );
 ```
+
+
+
+### About Develpment
+-------------------------------
+
+develop and maintenance by **Al7osam company**
+<p align="center">
+<img align="center" src="https://play-lh.googleusercontent.com/T04y6F4hKkzh6fygIF9S45_quM2MmLkOOlKzuAg__uskxQQ9_bxrM0lZ8t8PchRRuS0=w3840-h2160-rw?raw=true" />
+</p>
+<p align="center">
+<a href="https://play.google.com/store/apps/dev?id=8288448436887856501" target="_blank"><img src="https://img.shields.io/badge/Google%20Play-Al7osam-darkred.svg?style=for-the-badge&logo=google&logoColor=white"></a>&nbsp;&nbsp;&nbsp;<a href="https://www.threads.net/@al7osamsolutions" target="_blank"><img src="https://img.shields.io/badge/instagram-@Al7osam-blue.svg?style=for-the-badge&logo=instagram&logoColor=white"></a>
+&nbsp;&nbsp;&nbsp;<a href="https://www.facebook.com/Al7osamCompany/" target="_blank"><img src="https://img.shields.io/badge/facebook-Al7osam-darkblue.svg?style=for-the-badge&logo=Facebook&logoColor=white"></a>
+ &nbsp;&nbsp;&nbsp;<a href="https://apps.apple.com/eg/developer/al7osam/id1292208382" target="_blank"><img src="https://img.shields.io/badge/apple-Al7osam-orange.svg?style=for-the-badge&logo=Apple&logoColor=white"></a>
+<br>
+</p>
+<br>

@@ -10,6 +10,7 @@ this version is initial join zoom meeting using native sdk for android and ios
 you need to drag and drop zoom ios meeting sdk manually to your application
 
 ## Platform Setup
+
 In order to work correctly there needs to be some platform specific setup. Check below on how to add support for Android and iOS
 
 
@@ -17,19 +18,21 @@ In order to work correctly there needs to be some platform specific setup. Check
 download zoom sdk for android by running this command in terminal
 
 ```
-flutter pub run zoom_native_sdk:download
+dart run zoom_native_sdk:download
 ```
+
 </details>
 
 <details><summary>iOS</summary>
 
-in first you need to login to your zoom account  then select your project and download  ios sdk.
+in first you need to login to your zoom account then select your project and download ios sdk.
 
 
  <img src="https://i.ibb.co/2yvrtHF/ios-zoom-sdk.webp?raw=true"> 
 
 
-after download is complete  unzip file and copy  two file  :-
+after download is complete unzip file and copy two file  :-
+
 * MobileRTC.xcframework
 * MobileRTCResources.bundle
 
@@ -39,6 +42,7 @@ and past in **IOS** module
 
 
 then open ios in **Xcode** and click right to Runner folder and add two file to it
+
 * MobileRTC.xcframework
 * MobileRTCResources.bundle
 
@@ -59,15 +63,14 @@ by click right to ios folder and select onpen in terminal
 pod install
 ```
 
-
-after pod install is complete  open xcode  and  make sure **MobileRTC.xcframework**
+after pod install is complete open xcode and make sure **MobileRTC.xcframework**
 is added in `TARGETS/Runner/Frameworks,Libraries, and Embedded Content`
 
 <img src="https://i.ibb.co/K21Y3Sg/add-rtc.png?raw=true" hight="500 px"> 
 
 <br /> 
 
-and finally  in xcode go to `Pods/TARGETS/zoom_native_sdk/Frameworks and Libraries`
+and finally in xcode go to `Pods/TARGETS/zoom_native_sdk/Frameworks and Libraries`
 
 and add MobileRTC.xcframework to it and make sure it Do Not Embed as shown
 
@@ -81,7 +84,6 @@ for more info
 
 ### Usage
 -------------------------
-
 
 ```
 import 'package:zoom_native_sdk/zoom_native_sdk.dart';
@@ -105,8 +107,6 @@ await _zoomNativelyPlugin.joinMeting(
   meetingPassword: "",
 );
 ```
-
-
 
 ### About Develpment
 -------------------------------
